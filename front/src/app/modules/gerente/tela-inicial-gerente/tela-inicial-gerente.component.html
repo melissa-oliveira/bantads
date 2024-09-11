@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Início Gerente</title>
+  </head>
+
+  <body>
+    <div class="container mt-2">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="fw-bold huge fw-900">
+          Início&nbsp;<span class="h4 text-orange-btds fw-700"> Gerente</span>
+        </h1>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mt-3 d-flex justify-content-center">
+            <table class="btds-borda-1 btds-shadow-50">
+              <thead>
+                <tr>
+                  <th>CPF</th>
+                  <th>Nome do Cliente</th>
+                  <th>Salário do Cliente</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cliente of clientes">
+                  <td>{{ cliente.cpf | mask : "000.000.000-00" }}</td>
+                  <td>{{ cliente.nome }}</td>
+                  <td>{{ cliente.salario | formataMoedaReal }}</td>
+                  <td class="custom-btn-group">
+                    <button
+                      title="Aprovar"
+                      alt="Aprovar"
+                      class="btn btn-xs btn-success me-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#confirmarAprovacao"
+                      (click)="setCpfSelecionado(cliente.cpf)"
+                    >
+                      Aprovar
+                    </button>
+                    <button
+                      title="Recusar"
+                      alt="Recusar"
+                      class="btn btn-xs btn-danger"
+                      data-bs-toggle="modal"
+                      data-bs-target="#confirmarRecusa"
+                      (click)="setCpfSelecionado(cliente.cpf)"
+                    >
+                      Recusar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      style="background-color: rgba(0, 0, 0, 0.5)"
+      id="confirmarAprovacao"
+      tabindex="-1"
+      aria-labelledby="confirmarAprovacao"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered bg-off">
+        <div
+          class="modal-content d-flex justify-content-center align-items-center"
+        >
+          <div
+            class="modal-header text-center d-flex justify-content-center align-items-center"
+          >
+            <h3
+              class="modal-title text-orange-btds fw-600 text-center"
+              id="confirmarAprovacao"
+            >
+              Confirmar aprovação de conta?
+            </h3>
+          </div>
+
+          <div class="modal-footer" style="border: 0px solid transparent">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="setCpfSelecionado('')"
+            >
+              Fechar
+            </button>
+            <button
+              type="button"
+              class="btn btn-btds"
+              data-bs-dismiss="modal"
+              (click)="aprovarConta(cpfSelecionado)"
+            >
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      style="background-color: rgba(0, 0, 0, 0.5)"
+      id="confirmarRecusa"
+      tabindex="-1"
+      aria-labelledby="ConfirmarRecusa"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered bg-off">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3
+              class="modal-title text-orange-btds fw-600"
+              id="confirmarRecusa"
+            >
+              Confirmar <span class="recusa">recusa</span> de conta
+            </h3>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h5>Motivo da recusa:</h5>
+            <input
+              type="text"
+              #descricaoInput
+              id="descricaoInput"
+              class="form-control input-btds"
+              placeholder="Descrição"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="setCpfSelecionado('')"
+            >
+              Fechar
+            </button>
+            <button
+              type="button"
+              class="btn btn-btds"
+              data-bs-dismiss="modal"
+              (click)="capturarDescricao()"
+            >
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

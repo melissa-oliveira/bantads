@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes</title>
+  </head>
+
+  <body>
+    <div class="container mt-2">
+      <h1 class="fw-bold huge fw-900">
+        Clientes&nbsp;<span class="h4 text-orange-btds fw-700"> Admin</span>
+      </h1>
+      <div class="d-flex justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mt-3">
+            <table class="borda btds-shadow-50">
+              <thead>
+                <tr>
+                  <th scope="col">Nome do Cliente</th>
+                  <th scope="col">CPF do Cliente</th>
+                  <th scope="col">Limite do Cliente</th>
+                  <th scope="col">Nome do Gerente</th>
+                  <th scope="col">Saldo do Cliente</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let conta of contas">
+                  <td>{{ conta.cliente.nome }}</td>
+                  <td>{{ conta.cliente.cpf | mask : "000.000.000-00" }}</td>
+                  <td>{{ conta.limite | formataMoedaReal }}</td>
+                  <td>{{ conta.gerente.nome }}</td>
+                  <td>{{ conta.saldo | formataMoedaReal }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <p *ngIf="contas.length === 0">Nenhum cliente aprovado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

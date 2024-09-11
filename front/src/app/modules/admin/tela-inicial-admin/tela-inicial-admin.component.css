@@ -1,0 +1,41 @@
+.card-adm{
+    height: fit-content;
+    border: 2px solid #f98316;
+    border-radius: 2rem;
+    padding: 1.5rem;  
+}
+
+.positivo{
+    color: #3a37ff;
+    border: 2px solid #3a37ff;
+    border-radius: 1rem;
+    box-sizing:border-box;
+    margin-left: 12px;
+    font-size: 0.9rem;
+}
+.negativo{
+    color: #ff3737;
+    border: 2px solid #ff3737;
+    border-radius: 1rem;
+    box-sizing:border-box;
+    margin-left: 12px;
+    margin-right: 12px;
+    font-size: 0.9rem;
+}
+
+.bl{
+    color: #222222;
+}
+.clear-row {
+    width: 100%;
+    display: block;
+    content: "";
+    clear: both;
+  }
+
+  .w-100 {
+    width: 100%;
+    display: block;
+    content: "";
+  }
+  

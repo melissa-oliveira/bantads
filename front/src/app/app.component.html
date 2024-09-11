@@ -1,0 +1,253 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light p-3">
+    <div
+      *ngIf="qualLink() != '/login' && qualLink() != '/autocadastro'"
+      class="container-fluid"
+      style="position: sticky"
+    >
+      <a class="navbar-brand" href="#">
+        <img
+          src="../assets/Logo 4 - Bantads.png"
+          alt="Logo da empresa"
+          height="60"
+        />
+      </a>
+
+      <!-- Menu Cliente -->
+      <div
+        *ngIf="usuarioLogado().tipo == cliente"
+        class="w-50 d-flex justify-content-center"
+      >
+        <!-- Inicial -->
+        <a
+          *ngIf="qualLink() == '/cliente'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['cliente/']"
+          >Início</a
+        >
+        <a
+          *ngIf="qualLink() != '/cliente'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['cliente/']"
+          >Início</a
+        >
+
+        <!-- Extrato -->
+        <a
+          *ngIf="qualLink() == '/cliente/extrato'"
+          class="btds-bt-navA mx-1 py-2"
+          [routerLink]="['cliente/extrato']"
+          >Extrato</a
+        >
+        <a
+          *ngIf="qualLink() != '/cliente/extrato'"
+          class="btds-bt-nav mx-1 py-2"
+          [routerLink]="['cliente/extrato']"
+          >Extrato</a
+        >
+      </div>
+
+      <!-- Menu Gerente -->
+      <div
+        *ngIf="usuarioLogado().tipo == gerente"
+        class="w-50 d-flex justify-content-center"
+      >
+        <!-- Inicial -->
+        <a
+          *ngIf="qualLink() == '/gerente'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/']"
+          >Início</a
+        >
+        <a
+          *ngIf="qualLink() != '/gerente'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/']"
+          >Início</a
+        >
+
+        <!-- Clientes -->
+        <a
+          *ngIf="qualLink() == '/gerente/clientes'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/clientes']"
+          >Clientes</a
+        >
+        <a
+          *ngIf="qualLink() != '/gerente/clientes'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/clientes']"
+          >Clientes</a
+        >
+
+        <!-- Pesquisar Cliente -->
+        <a
+          *ngIf="qualLink() == '/gerente/pesquisar-cliente'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/pesquisar-cliente']"
+          >Pesquisar Cliente</a
+        >
+        <a
+          *ngIf="qualLink() != '/gerente/pesquisar-cliente'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/pesquisar-cliente']"
+          >Pesquisar Cliente</a
+        >
+
+        <!-- Melhores Clientes -->
+        <a
+          *ngIf="qualLink() == '/gerente/melhores-clientes'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/melhores-clientes']"
+          >Melhores Clientes</a
+        >
+        <a
+          *ngIf="qualLink() != '/gerente/melhores-clientes'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['gerente/melhores-clientes']"
+          >Melhores Clientes</a
+        >
+      </div>
+
+      <!-- Menu Admin -->
+      <div
+        *ngIf="usuarioLogado().tipo == admin"
+        class="w-50 d-flex justify-content-center"
+      >
+        <!-- Inicial -->
+        <a
+          *ngIf="qualLink() == '/admin'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['admin/']"
+          >Início</a
+        >
+        <a
+          *ngIf="qualLink() != '/admin'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['admin/']"
+          >Início</a
+        >
+
+        <!-- Clientes -->
+        <a
+          *ngIf="qualLink() == '/admin/gerentes'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['admin/gerentes']"
+          >Gerentes</a
+        >
+        <a
+          *ngIf="qualLink() != '/admin/gerentes'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['admin/gerentes']"
+          >Gerentes</a
+        >
+
+        <!-- Clientes -->
+        <a
+          *ngIf="qualLink() == '/admin/clientes'"
+          class="btds-bt-navA mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['admin/clientes']"
+          >Clientes</a
+        >
+        <a
+          *ngIf="qualLink() != '/admin/clientes'"
+          class="btds-bt-nav mx-1 py-2"
+          aria-current="page"
+          [routerLink]="['admin/clientes']"
+          >Clientes</a
+        >
+      </div>
+
+      <!-- Acesso ao Perfil do Cliente -->
+      <!-- <button *ngIf="qualLink() == '/cliente/perfil'" class="btds-bt-navA py-2 px-3 d-flex flex-row"
+        [routerLink]="['cliente/perfil']">
+        <div class="text-right my-0 mx-2 bg-off">
+          <div class="row bg-off">
+            <h5 class="m-0 mt-1 p-0 bg-off" style="color: #f98316; font-weight: 600;">Nome Usuário</h5>
+          </div>
+          <div class="row justify-content-end bg-off">
+            <a class="m-0 p-0 btds-sair bg-off" (click)="logout()" style="width: max-content;">Sair</a>
+          </div>
+        </div>
+        <div class="mx-3 bg-off" style="margin-right: 0 !important;">
+          <img src="../assets/perfil.png" height="55px" alt="Foto do perfil" class="rounded-circle">
+        </div>
+      </button>
+
+      <button *ngIf="qualLink() != '/cliente/perfil'" class="btds-bt-nav py-2 px-3 d-flex flex-row"
+        [routerLink]="['cliente/perfil']">
+        <div class="text-right my-0 mx-2 bg-off">
+          <div class="row">
+            <h5 class="m-0 mt-1 p-0 bg-off" style="color: #f98316; font-weight: 600;">Nome Usuário</h5>
+          </div>
+          <div class="row justify-content-end">
+            <a class="m-0 p-0 btds-sair bg-off" (click)="logout()" style="width: max-content;">Sair</a>
+          </div>
+        </div>
+        <div class="mx-3" style="margin-right: 0 !important;">
+          <img src="../assets/perfil.png" height="55px" alt="Foto do perfil" class="rounded-circle">
+        </div>
+      </button> -->
+
+      <div class="dropdown">
+        <button
+          class="btds-bt-nav py-2 px-3 d-flex flex-row dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <div class="text-right my-0 mx-2 bg-off">
+            <div class="row">
+              <h5
+                class="m-0 mt-1 p-0 bg-off"
+                style="color: #f98316; font-weight: 600"
+              >
+                Bem-Vindo
+              </h5>
+            </div>
+            <div class="row justify-content-end">
+              <h6 class="m-0 p-0 bg-off" style="width: max-content">Opções</h6>
+            </div>
+          </div>
+          <div class="mx-3" style="margin-right: 0 !important">
+            <img
+              src="../assets/perfil.png"
+              height="55px"
+              alt="Foto do perfil"
+              class="rounded-circle"
+            />
+          </div>
+        </button>
+        <ul
+          class="dropdown-menu dropdown-menu dropdown-menu-end btds-borda-1 btds-shadow-50"
+        >
+          <li *ngIf="usuarioLogado().tipo == cliente">
+            <a class="dropdown-item" [routerLink]="['cliente/perfil']"
+              >Perfil</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item text-danger" (click)="logout()">Sair</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>

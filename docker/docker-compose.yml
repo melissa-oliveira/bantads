@@ -1,0 +1,167 @@
+version: "3"
+
+services:
+  #############
+  ## ANGULAR ##
+  #############
+  front:
+    image: "front:latest"
+    container_name: "bantads-front"
+    build:
+      context: ../front
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../front:/app:rw
+
+  ###############
+  ## RABBITMQ ##
+  ##############
+  rabbitmq:
+    image: rabbitmq:3.10-management
+    container_name: rabbitmq
+    ports: 
+      - "5672:5672" # broker
+      - "15672:15672" # web
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest 
+
+  #################
+  ## API GATEWAY ##
+  #################
+  api-gateway:
+    build:
+      context: ../back/api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../back/api-gateway:/app
+      - /app/node_modules
+    depends_on:
+      - ms-cliente
+      - ms-gerente
+      - ms-conta
+      - ms-auth
+      - ms-saga
+
+  ########################################
+  ## MICROSSERVIÇO ORQUESTRADOR DA SAGA ##
+  ########################################
+  # SPRING BOOT
+  ms-saga:
+    image: saga:0.0.1-SNAPSHOT
+    container_name: "saga"
+    ports:  
+      - 8084:8084
+
+  ###################################
+  ## MICROSSERVIÇO DE AUTENTICAÇÃO ##
+  ###################################
+  # MONGO DB
+  ms-auth-mongo:
+    image: mongo:latest
+    container_name: "ms-auth-mongo"
+    ports:
+      - 27017:27017
+    environment:
+       MONGO_INITDB_DATABASE: "ms-auth"
+    volumes:
+      - ../database/auth/init.js:/docker-entrypoint-initdb.d/init.js:ro
+  # SPRING BOOT
+  ms-auth:
+    image: ms-auth:0.0.1-SNAPSHOT
+    container_name: "ms-auth"
+    ports:  
+      - 8080:8080
+    links:
+      - ms-auth-mongo
+
+  ##############################
+  ## MICROSSERVIÇO DO CLIENTE ##
+  ##############################
+  # POSTEGRES DB
+  ms-cliente-postegres:
+    image: postgres
+    container_name: ms-cliente-postegres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ms-cliente
+    ports:
+      - "5433:5432"
+  # SPRING BOOT
+  ms-cliente:
+    image: ms-cliente:0.0.1-SNAPSHOT
+    container_name: "ms-cliente"
+    ports:  
+      - 8081:8081
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ms-cliente-postegres:5432/ms-cliente
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - ms-cliente-postegres
+
+  ##############################
+  ## MICROSSERVIÇO DO GERENTE ##
+  ##############################
+  # POSTEGRES DB
+  ms-gerente-postegres:
+    image: postgres
+    container_name: ms-gerente-postegres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ms-gerente
+    ports:
+      - "5434:5432"
+  # SPRING BOOT
+  ms-gerente:
+    image: ms-gerente:0.0.1-SNAPSHOT
+    container_name: "ms-gerente"
+    ports:  
+      - 8082:8082
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ms-gerente-postegres:5432/ms-gerente
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_MAIL_HOST=smtp.gmail.com
+      - SPRING_MAIL_PORT=587
+      - SPRING_MAIL_USERNAME=lol.lavanderiaonline.lol@gmail.com
+      - SPRING_MAIL_PASSWORD=exyhttoqzmbiuesk
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
+    depends_on:
+      - ms-gerente-postegres
+
+  ############################
+  ## MICROSSERVIÇO DA CONTA ##
+  ############################
+  # POSTEGRES DB
+  ms-conta-postegres:
+    image: postgres
+    container_name: ms-conta-postegres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ../database/conta/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5435:5432"
+  # SPRING BOOT
+  ms-conta:
+    image: ms-conta:0.0.1-SNAPSHOT
+    container_name: "ms-conta"
+    ports:  
+      - 8083:8083
+    depends_on:
+      - ms-conta-postegres

@@ -1,0 +1,63 @@
+option{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-container {
+    border: 2px solid #f98316;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.laranja {
+    background-color: #f98316;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.laranja:hover {
+    background-color: #f98316;
+}
+
+.cinza {
+    background-color: #adaca9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cinza:hover {
+    background-color: #736f6b;
+}
+
+.input-btds {
+    border-color: #dbdbdb;
+}
+
+.input-btds:focus {
+    border-color: #f98316;
+    box-shadow: 0 3px 15px rgba(249, 131, 22, 0.4);
+}
+
+.btn-btds {
+    border-radius: 7px;
+    color: #fff;
+    background-color: #F98316;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.btn-btds:hover{
+    color: #f98316;
+    background-color: #fff;
+    border: 2px solid #f98316;
+    box-shadow: 0 2px 15px rgba(249, 131, 22, 0.7);
+}
+.btn-btds:active{
+    transform: scale(0.96);
+    box-shadow: 0 2px 15px rgba(249, 131, 22, 1);
+}

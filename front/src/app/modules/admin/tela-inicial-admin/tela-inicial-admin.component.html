@@ -1,0 +1,43 @@
+<div class="container">
+  <h1 class="fw-bold huge fw-900">
+    Início&nbsp;<span class="h4 text-orange-btds fw-700">Admin</span>
+  </h1>
+</div>
+<div class="container" style="padding-left: 1rem">
+  <h3 class="my-4">
+    Total de gerentes:&nbsp;
+    <span class="text-orange-btds fw-600">{{ gerentesDashboard.length }}</span>
+  </h3>
+  <div class="row">
+    <ng-container *ngFor="let gerente of gerentesDashboard; let i = index">
+      <div class="col-12 col-md-4 card-adm btds-shadow-40 m-2">
+        <div class="row bg-off">
+          <h5 class="text-orange-btds bg-off fw-600">{{ gerente.nome }}</h5>
+        </div>
+        <div class="row bg-off">
+          <p class="fw-500 bg-off">
+            <span class="text-orange-btds h5 fw-600">{{
+              gerente.qntClientes
+            }}</span>
+            &nbsp;Clientes
+          </p>
+        </div>
+        <div class="row bg-off bg-off">
+          <div class="col positivo">
+            <h6 class="my-2 bg-off fw-600">
+              + {{ gerente.saldoPositivo | formataMoedaReal }}
+            </h6>
+          </div>
+          <div class="col negativo">
+            <h6 class="my-2 bg-off fw-600">
+              {{ gerente.saldoNegativo | formataMoedaReal }}
+            </h6>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="(i + 1) % 2 === 0">
+        <div class="w-100"></div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

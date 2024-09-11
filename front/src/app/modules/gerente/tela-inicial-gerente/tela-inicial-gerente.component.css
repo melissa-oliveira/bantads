@@ -1,0 +1,155 @@
+.borda {
+  border: 1.5px solid #f98316
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 10rem;
+}
+
+
+.laranja {
+  color: #f98316;
+  background-color: none;
+  text-decoration: none; 
+
+}
+
+table {
+  width: 120%;
+  border-collapse: collapse;
+  justify-content: center;
+  margin-left: -4rem;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+.saida {
+  color: red;
+}
+
+.entrada {
+  color: blue;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.custom-btn-group {
+  display: flex;
+  align-items: center;
+}
+
+.custom-btn-group a {
+  margin-right: 5px; /* Ajuste conforme necessÃ¡rio */
+}
+
+.botao-adicionar-cliente {
+  background-color: #ff7f00 ;
+  border: 1px solid #ff7f00;
+  color: white; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  text-decoration: none; 
+}
+
+.botao-adicionar-cliente:hover {
+  background-color: #f98316;
+  border-color: #f98316;
+}
+
+.gerente-titulo {
+  text-align: left;
+  color: #f98316;
+  font-size: 1rem;
+}
+
+tr:hover td{
+  background-color: #eee;
+}
+
+th, td {
+  overflow: hidden;
+  text-align: center;
+  /* margin: 1rem; */
+  padding: 13px;
+  padding-left: 20px; 
+  padding-right: 20px; 
+  border-color: transparent;
+  background-color: transparent;
+  white-space: nowrap;
+}
+th {
+  border: 0;
+  font-size: large;
+  color: #f98316;
+}
+td{
+  border-top: 1px solid #ddd;
+}
+
+table{
+  border-spacing: 0;
+  width: 100%;
+  padding: 1.4rem;
+  padding-top: 0.4rem;
+  text-align: center;
+  border: 3px solid transparent;
+  border-radius: 25px;
+  border-collapse: inherit;
+  /* box-shadow: 0 12px 25px rgba(249, 131, 22, 0.4); */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.custom-btn-group{
+  margin: 0;
+}
+
+.recusa{
+text-decoration: underline solid rgba(255,0,0,0.7) 4px;
+}
+
+.btn-btds {
+  border-radius: 7px;
+  color: #fff;
+  background-color: #F98316;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.btn-btds:hover{
+  color: #f98316;
+  background-color: #fff;
+  border: 2px solid #f98316;
+  box-shadow: 0 2px 15px rgba(249, 131, 22, 0.7);
+}
+.btn-btds:active{
+  transform: scale(0.96);
+  box-shadow: 0 2px 15px rgba(249, 131, 22, 1);
+}
+
+.input-btds{
+border-color: #dbdbdb;
+}
+
+.input-btds:focus{
+border-color: #f98316;
+box-shadow: 0 3px 15px rgba(249, 131, 22, 0.4);
+}

@@ -1,0 +1,144 @@
+<div class="container mt-2">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="fw-bold huge fw-900">
+      Pesquisar Cliente&nbsp;<span class="h4 text-orange-btds fw-700"
+        >Gerente</span
+      >
+    </h1>
+    <div
+      *ngIf="mensagemErro"
+      class="alert alert-danger ms-3"
+      role="alert"
+      style="width: auto"
+    >
+      {{ mensagemErro }}
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <form
+      class="row row-cols-lg-auto g-3 align-items-center"
+      #formPesquisarCliente="ngForm"
+    >
+      <div class="col-12 d-flex align-items-center mb-3">
+        <label for="pesquisarCliente" class="col-form-label me-3"
+          >Digite o CPF do cliente:</label
+        >
+        <input
+          type="text"
+          class="form-control input-btds me-3"
+          id="pesquisarCliente"
+          placeholder="000.000.000-00"
+          mask="000.000.000-00"
+          name="cpf"
+          [(ngModel)]="cliente.cpf"
+          #cpf="ngModel"
+        />
+        <button
+          type="button"
+          class="btn btn-btds align-self-center"
+          (click)="buscarContaPorCPf()"
+        >
+          <i class="bi bi-search bg-off"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div
+    class="modal fade"
+    style="background-color: rgba(0, 0, 0, 0.5)"
+    id="modalCliente"
+    #modalCliente
+    tabindex="-1"
+    aria-labelledby="ModalCliente"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog modal-dialog-centered bg-off d-flex justify-content-center"
+      style="width: 800px"
+    >
+      <div
+        class="modal-content d-flex justify-content-center"
+        style="width: 1000px"
+      >
+        <div class="modal-header">
+          <h2 class="modal-title text-orange-btds fw-700" id="modalCliente">
+            {{ cliente.nome }}
+          </h2>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Fechar"
+          ></button>
+        </div>
+        <div class="modal-body d-flex bg-off" style="width: 1000px">
+          <div class="col">
+            <div class="row">
+              <h5>CPF:</h5>
+              <p>{{ cliente.cpf }}</p>
+            </div>
+            <div class="row">
+              <h5>E-mail:</h5>
+              <p>{{ cliente.email }}</p>
+            </div>
+            <div class="row">
+              <h5>Telefone:</h5>
+              <p>{{ cliente.telefone }}</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <h5>CEP:</h5>
+              <p>{{ cliente.endereco.cep }}</p>
+            </div>
+            <div class="row">
+              <h5>Logradouro:</h5>
+              <p>{{ cliente.endereco.logradouro }}</p>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <h5>Número:</h5>
+                <p>{{ cliente.endereco.numero }}</p>
+              </div>
+              <div class="col">
+                <h5>Complemento:</h5>
+                <p>{{ cliente.endereco.complemento }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <h5>Estado:</h5>
+                <p>{{ cliente.endereco.estado }}</p>
+              </div>
+              <div class="col">
+                <h5>Cidade:</h5>
+                <p>{{ cliente.endereco.cidade }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <h5>Número da conta:</h5>
+              <p>{{ conta.numeroConta }}</p>
+            </div>
+            <div class="row">
+              <h5>Salário declarado:</h5>
+              <p>{{ cliente.salario }}</p>
+            </div>
+            <div class="row">
+              <h5 class="fw-700">Saldo em conta:</h5>
+              <h5 class="fw-700" style="color: black">{{ conta.saldo }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-btds" data-bs-dismiss="modal">
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

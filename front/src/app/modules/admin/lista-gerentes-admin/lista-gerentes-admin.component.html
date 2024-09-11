@@ -1,0 +1,66 @@
+<div class="container mt-2">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="fw-bold huge fw-900">
+      Gerentes&nbsp;<span class="h4 text-orange-btds fw-700"> Admin</span>
+    </h1>
+    <button [routerLink]="['novo']" class="btn-btds p-2 fw-600">
+      Adicionar Gerente
+    </button>
+  </div>
+  <div
+    *ngIf="mensagemErro"
+    class="alert alert-danger"
+    style="width: 550px"
+    role="alert"
+  >
+    {{ mensagemErro }}
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mt-3">
+        <table class="btds-borda-1 btds-shadow-50">
+          <thead>
+            <tr>
+              <th>Gerente</th>
+              <th>CPF</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let gerente of gerentes" class="">
+              <td>{{ gerente.nome }}</td>
+              <td>{{ gerente.cpf ? formatarCPF(gerente.cpf) : "" }}</td>
+              <td>{{ gerente.email }}</td>
+              <td>
+                {{ gerente.telefone ? formatarTelefone(gerente.telefone) : "" }}
+              </td>
+              <td class="custom-btn-group">
+                <a
+                  title="Editar"
+                  alt="Editar"
+                  class="btn btn-xs btn-success me-2"
+                  [routerLink]="['/admin/gerentes/', gerente.id]"
+                >
+                  Editar
+                </a>
+                <a
+                  title="Remover"
+                  alt="Remover"
+                  class="btn btn-xs btn-danger"
+                  (click)="remover($event, gerente)"
+                >
+                  Remover
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p *ngIf="gerentes.length === 0">Nenhum gerente cadastrado.</p>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

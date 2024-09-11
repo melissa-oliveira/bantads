@@ -1,0 +1,135 @@
+
+.borda {
+  border: 1.5px solid #f98316
+}
+
+.titulo {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-left: 15rem;
+}
+
+.laranja {
+  color: #f98316;
+  text-decoration: none; 
+
+}
+
+.saida:hover{
+  transition: 0.3s;
+  background-color: #ebd4d4;
+  cursor: pointer;
+}
+.entrada:hover{
+  transition: 0.3s;
+  background-color: #d4d4eb;
+  cursor: pointer;
+}
+.dia:hover{
+  transition: 0.3s;
+  background-color: #d3d3d3;
+  cursor: pointer;
+}
+
+th, td {
+  overflow: hidden;
+  text-align: center;
+  margin: 1rem;
+  padding: 13px;
+  padding-left: 20px; 
+  padding-right: 20px; 
+  border-color: black;
+  background-color: transparent;
+  white-space: nowrap;
+}
+th {
+  padding-bottom: 1.1rem;
+  font-size: large;
+}
+td{
+  border-top: 1px solid #ddd;
+}
+
+.saida td:first-child{
+  transition: 0.3s;
+  border-left: 3px solid transparent;
+}
+.saida:hover td:first-child{
+  transition: 0.3s;
+  border-left: 3px solid red;
+}
+.entrada td:first-child{
+  transition: 0.3s;
+  border-left: 3px solid transparent;
+}
+.entrada:hover td:first-child{
+  transition: 0.3s;
+  border-left: 3px solid blue;
+}
+.dia td:first-child{
+  transition: 0.3s;
+  border-left: 3px solid transparent;
+}
+.dia:hover td:first-child{
+  transition: 0.3s;
+  border-left: 3px solid grey;
+}
+
+table{
+  border-spacing: 0;
+  width: 100%;
+  padding: 1.4rem;
+  text-align: center;
+  /* border: 3px solid #f98316; */
+  border-radius: 25px;
+  border-collapse: inherit;
+  /* box-shadow: 0 12px 25px rgba(249, 131, 22, 0.4); */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+.saida {
+  color: red;
+}
+
+.entrada {
+  color: blue;
+}
+
+.dia td{
+  font-weight: 700;
+  border-top: 2px solid grey;
+}
+.dia td:first-child{
+  text-align: start;
+}
+.dia td:last-child{
+  text-align: center;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.input-btds{
+  border-color: #dbdbdb;
+}
+
+.input-btds:focus{
+border-width: 2px;
+  border-color: #f98316;
+  box-shadow: 0 3px 15px rgba(249, 131, 22, 0.4);
+}
+
+.btn-orange {
+  background-color: #f98316;
+  color: white;
+}

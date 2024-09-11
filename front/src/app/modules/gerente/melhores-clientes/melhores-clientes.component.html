@@ -1,0 +1,78 @@
+<div class="container mt-2">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="fw-bold huge fw-900">
+      Melhores Clientes&nbsp;<span class="h4 text-orange-btds fw-700">
+        Gerente</span
+      >
+    </h1>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-start mt-5 d-flex justify-content-center">
+        <table class="btds-borda-1 btds-shadow-50">
+          <thead>
+            <tr>
+              <th>Posição</th>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Limite</th>
+              <th>Gerente</th>
+              <th>Saldo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="contasFiltradas[0]">
+              <td style="color: goldenrod; font-weight: 700; font-size: large">
+                1º
+              </td>
+              <td>{{ getClienteNome(contasFiltradas[0]) }}</td>
+              <td>
+                {{
+                  getClienteCpf(contasFiltradas[0]) | mask : "000.000.000-00"
+                }}
+              </td>
+              <td>{{ getLimite(contasFiltradas[0]) | formataMoedaReal }}</td>
+              <td>{{ getGerenteNome(contasFiltradas[0]) }}</td>
+              <td>{{ getSaldo(contasFiltradas[0]) | formataMoedaReal }}</td>
+            </tr>
+            <tr *ngIf="contasFiltradas[1]">
+              <td
+                style="
+                  color: rgb(143, 143, 143);
+                  font-weight: 700;
+                  font-size: large;
+                "
+              >
+                2º
+              </td>
+              <td>{{ getClienteNome(contasFiltradas[1]) }}</td>
+              <td>
+                {{
+                  getClienteCpf(contasFiltradas[1]) | mask : "000.000.000-00"
+                }}
+              </td>
+              <td>{{ getLimite(contasFiltradas[1]) | formataMoedaReal }}</td>
+              <td>{{ getGerenteNome(contasFiltradas[1]) }}</td>
+              <td>{{ getSaldo(contasFiltradas[1]) | formataMoedaReal }}</td>
+            </tr>
+            <tr *ngIf="contasFiltradas[2]">
+              <td style="color: sienna; font-weight: 700; font-size: large">
+                3º
+              </td>
+              <td>{{ getClienteNome(contasFiltradas[2]) }}</td>
+              <td>
+                {{
+                  getClienteCpf(contasFiltradas[2]) | mask : "000.000.000-00"
+                }}
+              </td>
+              <td>{{ getLimite(contasFiltradas[2]) | formataMoedaReal }}</td>
+              <td>{{ getGerenteNome(contasFiltradas[2]) }}</td>
+              <td>{{ getSaldo(contasFiltradas[2]) | formataMoedaReal }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

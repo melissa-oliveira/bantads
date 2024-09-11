@@ -1,0 +1,64 @@
+.maisRounded {
+  border-radius: 2rem;
+}
+
+.titulo {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.cliente-titulo {
+  text-align: left;
+  color: #f98316;
+  font-size: 2rem;
+}
+
+.gerente-titulo {
+  text-align: right;
+  color: rgba(182, 180, 178, 0.925);
+  font-size: 2rem;
+}
+
+.salvar {
+  background-color: #f98316;
+  border: #f98316;
+}
+.laranja {
+  color: #f98316; /* Cor laranja */
+  text-decoration: none; /* Remove o sublinhado */
+}
+
+.input-btds{
+  border-color: #dbdbdb;
+  box-sizing: border-box;
+}
+
+.input-btds:focus{
+  box-sizing: border-box;
+  border-width: 2px;
+  border-color: #f98316;
+  box-shadow: 0 3px 15px rgba(249, 131, 22, 0.4);
+}
+
+.mensagem-sucesso {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-size: 1.2rem; 
+  padding: 1rem; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background-color: #d4edda;
+  color: #155724; 
+}
+
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

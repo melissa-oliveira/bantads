@@ -1,0 +1,83 @@
+<div class="container" style="max-width: 330px; top: 0">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md">
+      <div class="card-btds mt-2">
+        <div class="text-center mb-4">
+          <img
+            src="../../../assets/Logo 1 - B bantads.png"
+            alt="Logo"
+            class="img-fluid"
+            style="width: 78%"
+          />
+        </div>
+
+        <div *ngIf="mensagemErro" class="alert alert-danger" role="alert">
+          {{ mensagemErro }}
+        </div>
+
+        <form #loginForm="ngForm">
+          <div class="form-group mb-4 shadow-sm">
+            <input
+              type="text"
+              class="form-control input-btds"
+              style="border-color: #ced4da"
+              placeholder="Login"
+              id="email"
+              name="email"
+              [(ngModel)]="usuario.email"
+              #email="ngModel"
+              required
+              isEmail
+            />
+          </div>
+          <div
+            *ngIf="email.errors && email.touched"
+            class="text-orange-btds p-0"
+          >
+            <div class="bg-off" [hidden]="!email.errors['required']">
+              <i class="bi bi-exclamation-circle me-1"></i>O email é obrigatório
+            </div>
+            <div class="bg-off" [hidden]="!email.errors['isEmail']">
+              <i class="bi bi-exclamation-circle me-1"></i>E-mail inválido
+            </div>
+          </div>
+          <div class="form-group mb-4 shadow-sm">
+            <input
+              type="password"
+              class="form-control input-btds"
+              style="border-color: #ced4da"
+              placeholder="Senha"
+              id="senha"
+              name="senha"
+              [(ngModel)]="usuario.senha"
+              #senha="ngModel"
+            />
+          </div>
+          <div
+            *ngIf="senha.errors && senha.touched"
+            class="text-orange-btds p-0"
+          >
+            <div class="bg-off" [hidden]="!senha.errors['required']">
+              <i class="bi bi-exclamation-circle me-1"></i>A senha é obrigatório
+            </div>
+          </div>
+        </form>
+
+        <div class="form-group text-center">
+          <button class="btn-btds btds-login" (click)="tentarLogin()">
+            Login
+          </button>
+        </div>
+        <div class="text-center mt-1" style="font-size: 14px">
+          <span class="small" style="font-weight: 400">Não tem conta? </span>
+          <a
+            class="text-orange-btds"
+            style="font-weight: 600"
+            [routerLink]="['/autocadastro']"
+            >Cadastre-se aqui</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

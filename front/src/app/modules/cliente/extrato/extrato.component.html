@@ -1,0 +1,54 @@
+<div class="p-5 pt-2 m-5 mt-0">
+  <div class="row">
+    <div class="col">
+      <h1 class="fw-bold huge fw-900">
+        Extrato&nbsp;<span class="h4 text-orange-btds fw-700"> Cliente</span>
+      </h1>
+    </div>
+    <div class="col">
+      <form #formFiltro="ngForm" class="row w-100 align-items-end">
+        <div class="col">
+          <h4>Data de início:</h4>
+          <input
+            type="date"
+            class="form-control input-btds"
+            name="dataInicio"
+            [(ngModel)]="filtro.dataInicio"
+            #dataInicio="ngModel"
+          />
+        </div>
+        <div class="col">
+          <h4 class="mr-0">Data de fim:</h4>
+          <input
+            type="date"
+            class="form-control input-btds"
+            name="dataFim"
+            [(ngModel)]="filtro.dataFim"
+            #dataFim="ngModel"
+          />
+        </div>
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-btds btn-orange"
+            data-bs-toggle="modal"
+            data-bs-target="#modalCliente"
+            (click)="buscarExtratoPorNumeroConta()"
+          >
+            <i class="bi bi-search bg-off"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-10 d-flex justify-content-center">
+      <div class="col">
+        <div class="row"></div>
+        <div class="row text-center mt-3">
+          <div [innerHTML]="tabelaHTML"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

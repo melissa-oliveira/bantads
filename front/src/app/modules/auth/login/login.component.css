@@ -1,0 +1,9 @@
+.input-btds{
+    border: 1px solid #cfcfcf;
+}
+
+.input-btds:focus{
+    border: 2px solid #f98316 !important;
+    border-color: #f98316;
+    box-shadow: 0 3px 15px rgba(255, 126, 5, 0.6);
+}

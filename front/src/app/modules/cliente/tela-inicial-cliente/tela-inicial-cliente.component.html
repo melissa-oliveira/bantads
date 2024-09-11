@@ -1,0 +1,281 @@
+<div class="p-5 pt-2 m-5 mt-0">
+  <h1 class="fw-bold huge fw-900">
+    Início&nbsp;<span class="h4 text-orange-btds fw-700"> Cliente</span>
+  </h1>
+  <div class="col-auto" style="width: 780px">
+    <div
+      *ngIf="mensagemErro"
+      class="alert alert-danger mb-0"
+      role="alert"
+      style="white-space: nowrap"
+    >
+      {{ mensagemErro }}
+    </div>
+  </div>
+  <div class="row">
+    <!-- Cards de Informação -->
+    <div class="col-7">
+      <div class="border border-3 rounded-4 p-4 m-3 row h-100">
+        <h1 class="col-12">
+          Saldo:
+          <span
+            class="bold"
+            [ngClass]="{ 'saldo-negativo': conta.saldo < 0 }"
+            IsMoedaReal
+            >{{ conta.saldo | formataMoedaReal }}</span
+          >
+        </h1>
+        <h3 class="col-12" style="color: gray; font-weight: bolder">
+          Limite:
+          <span class="fw-bold" FormataMoedaRealPipe>{{
+            conta.limite | formataMoedaReal
+          }}</span>
+        </h3>
+      </div>
+    </div>
+
+    <!-- Cards de Informação -->
+
+    <!-- Botões de Ação -->
+    <div class="col-2">
+      <div class="row mt-3 h-100">
+        <button
+          class="col-12 btn-btds rounded-4 fs-4 mb-2"
+          data-bs-toggle="modal"
+          data-bs-target="#modalDeposito"
+        >
+          <i class="bi bi-box-arrow-down bg-off"></i>
+          <p class="mb-0 bg-off fw-500">Depósito</p>
+        </button>
+        <button
+          class="col-12 btn-btds rounded-4 fs-4 mt-2"
+          data-bs-toggle="modal"
+          data-bs-target="#modalTransferencia"
+        >
+          <i class="bi bi-arrow-left-right bg-off"></i>
+          <p class="mb-0 bg-off fw-500">Transferência</p>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-auto h-100"></div>
+    <div class="col-2">
+      <div class="row mt-3 h-100">
+        <button
+          class="col-12 btn-btds rounded-4 fs-4 mb-2"
+          data-bs-toggle="modal"
+          data-bs-target="#modalSaque"
+        >
+          <i class="bi bi-box-arrow-up bg-off"></i>
+          <p class="mb-0 bg-off fw-500">Saque</p>
+        </button>
+        <button
+          class="col-12 btn-btds rounded-4 fs-4 mt-2"
+          [routerLink]="['/cliente/extrato']"
+        >
+          <i class="bi bi-file-earmark-text bg-off"></i>
+          <p class="mb-0 bg-off fw-500">Extrato</p>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Fim Botões de Ação -->
+
+  <!-- Modal Depósito -->
+  <div
+    class="modal fade"
+    id="modalDeposito"
+    style="background-color: rgba(0, 0, 0, 0.5)"
+    tabindex="-1"
+    aria-labelledby="modal Deposito"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered bg-off">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2
+            class="modal-title text-orange-btds fw-700"
+            id="exampleModalLabel"
+          >
+            Depósito
+          </h2>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Fechar"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <h5 class="m-2">Informe a quantia a ser depositada:</h5>
+
+          <form class="col-8 m-3" #formDeposito="ngForm">
+            <input
+              class="form-control input-btds"
+              name="valor"
+              type="text"
+              [(ngModel)]="deposito.valor"
+              #valor="ngModel"
+              IsMoedaReal
+            />
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Fechar
+          </button>
+          <button
+            type="button"
+            class="btn btn-btds h-100"
+            (click)="fazerDeposito()"
+            data-bs-dismiss="modal"
+          >
+            Adicionar Depósito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fim Modal Depósito -->
+
+  <!-- Modal Saque -->
+  <div
+    class="modal fade"
+    id="modalSaque"
+    style="background-color: rgba(0, 0, 0, 0.5)"
+    tabindex="-1"
+    aria-labelledby="modal Saque"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered bg-off">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2
+            class="modal-title text-orange-btds fw-700"
+            id="exampleModalLabel"
+          >
+            Saque
+          </h2>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Fechar"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <h5 class="m-2">Informe a quantia de saque:</h5>
+
+          <form class="col-8 m-3" #formSaque="ngForm">
+            <input
+              class="form-control input-btds"
+              name="valor"
+              type="text"
+              [(ngModel)]="saque.valor"
+              #valor="ngModel"
+              IsMoedaReal
+            />
+          </form>
+
+          <p class="m-2 text-orange-btds bg-off">
+            <span class="fw-600 bg-off">Importante:</span> A quantia de saque
+            não pode ser maior que o saldo da conta e do seu limite.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Fechar
+          </button>
+          <button
+            type="button"
+            class="btn btn-btds h-100"
+            (click)="fazerSaque()"
+            data-bs-dismiss="modal"
+          >
+            Adicionar Saque
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fim Modal Saque -->
+
+  <!-- Modal Transferencia -->
+  <div
+    class="modal fade"
+    id="modalTransferencia"
+    style="background-color: rgba(0, 0, 0, 0.5)"
+    tabindex="-1"
+    aria-labelledby="modal Transferencia"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered bg-off">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2
+            class="modal-title text-orange-btds fw-700"
+            id="exampleModalLabel"
+          >
+            Transferência
+          </h2>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Fechar"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form #formTransferencia="ngForm">
+            <h5 class="m-2">Número da conta corrente destino:</h5>
+            <input
+              class="w-75 form-control input-btds"
+              name="contaDestino"
+              type="text"
+              [(ngModel)]="transferencia.contaDestino"
+              #contaDestino="ngModel"
+            />
+            <h5 class="m-2 bg-off">Valor da transferência:</h5>
+            <input
+              class="w-75 form-control input-btds"
+              name="valor"
+              type="text"
+              [(ngModel)]="transferencia.valor"
+              IsMoedaReal
+            />
+          </form>
+
+          <p class="m-2 text-orange-btds bg-off">
+            <span class="fw-600 bg-off">Importante:</span> A quantia de saque
+            não pode ser maior que o saldo da conta e do seu limite.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Fechar
+          </button>
+          <button
+            type="button"
+            class="btn btn-btds h-100"
+            (click)="fazerTansferencia()"
+            data-bs-dismiss="modal"
+          >
+            Transferir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fim Modal Transferencia -->
+</div>

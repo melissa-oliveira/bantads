@@ -1,0 +1,147 @@
+<div class="container mt-2">
+  <h1 class="fw-bold huge fw-900">
+    Editar Gerente&nbsp;<span class="h4 text-orange-btds fw-700"> Admin</span>
+  </h1>
+
+  <div class="card-container btds-shadow-70 mt-2">
+    <form #formGerente="ngForm">
+      <!-- Nome -->
+      <div class="form-group mb-2">
+        <label for="nome">Nome:</label>
+        <input
+          type="text"
+          class="form-control input-btds"
+          id="nome"
+          name="nome"
+          [(ngModel)]="gerente.nome"
+          #nome="ngModel"
+          minlength="1"
+          required
+        />
+        <div *ngIf="nome.errors && nome.touched" class="text-orange-btds p-0">
+          <div class="bg-off" [hidden]="!nome.errors['required']">
+            <i class="bi bi-exclamation-circle me-2"></i>O nome é obrigatório.
+            Por favor, preencha o campo
+          </div>
+        </div>
+      </div>
+
+      <!-- CPF -->
+      <div class="form-group mb-2">
+        <label for="cpf">CPF:</label>
+        <input
+          type="cpf"
+          class="form-control input-btds"
+          id="cpf"
+          name="cpf"
+          [(ngModel)]="gerente.cpf"
+          #cpf="ngModel"
+          mask="000.000.000-00"
+          readonly
+        />
+        <div *ngIf="cpf.errors && cpf.touched" class="text-orange-btds p-0">
+          <div class="bg-off" [hidden]="!cpf.errors['required']">
+            <i class="bi bi-exclamation-circle me-2"></i>O CPF é obrigatório.
+            Por favor, preencha o campo
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group mb-2">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          class="form-control input-btds"
+          id="email"
+          name="email"
+          [(ngModel)]="gerente.email"
+          #email="ngModel"
+          minlength="1"
+          required
+          IsEmail
+        />
+        <!-- Manipulação de erros de email -->
+        <div *ngIf="email.errors && email.touched" class="text-orange-btds p-0">
+          <div class="bg-off" [hidden]="!email.errors['required']">
+            <i class="bi bi-exclamation-circle me-2"></i>O email é obrigatório.
+            Por favor, preencha o campo
+          </div>
+          <div class="bg-off" [hidden]="!email.errors['isEmail']">
+            <i class="bi bi-exclamation-circle me-2"></i>E-mail inválido! Por
+            favor, digite um email válido
+          </div>
+        </div>
+      </div>
+
+      <!-- Telefone -->
+      <div class="form-group mb-2">
+        <label for="telefone">Telefone:</label>
+        <input
+          type="text"
+          class="form-control input-btds"
+          id="telefone"
+          name="telefone"
+          [(ngModel)]="gerente.telefone"
+          #telefone="ngModel"
+          minlength="1"
+          required
+          IsTelefone
+          mask="(00) 00000-0000"
+        />
+        <div
+          *ngIf="telefone.errors && telefone.touched"
+          class="text-orange-btds p-0"
+        >
+          <div class="bg-off" [hidden]="!telefone.errors['required']">
+            <i class="bi bi-exclamation-circle me-2"></i>O telefone é
+            obrigatório. Por favor, preencha o campo
+          </div>
+          <div class="bg-off" [hidden]="!telefone.errors['isTelefone']">
+            <i class="bi bi-exclamation-circle me-2"></i>Telefone inválido! Por
+            favor, digite um telefone válido
+          </div>
+        </div>
+      </div>
+
+      <!-- Senha -->
+      <div class="form-group mb-2">
+        <label for="senha">Nova Senha:</label>
+        <input
+          type="password"
+          class="form-control input-btds"
+          id="senha"
+          name="senha"
+          [(ngModel)]="gerente.senha"
+          #senha="ngModel"
+          minlength="1"
+          required
+        />
+        <div *ngIf="senha.errors && senha.touched" class="text-orange-btds p-0">
+          <div class="bg-off" [hidden]="!senha.errors['required']">
+            <i class="bi bi-exclamation-circle me-2"></i>A senha é obrigatória.
+            Por favor, preencha o campo
+          </div>
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <div class="form-group mt-3">
+        <button
+          type="button"
+          class="btn-btds py-2 px-3"
+          (click)="atualizar()"
+          [disabled]="!formGerente.form.valid"
+        >
+          Salvar
+        </button>
+        <a
+          class="btn cinza"
+          style="margin-left: 10px"
+          [routerLink]="['/admin/gerentes']"
+          >Voltar</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

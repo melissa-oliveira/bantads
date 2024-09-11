@@ -1,0 +1,11 @@
+/front/node_modules
+
+/back/api-gateway/node_modules
+
+/.metadata/
+
+/back/.metadata
+
+/.vscodes
+
+/docker/.env

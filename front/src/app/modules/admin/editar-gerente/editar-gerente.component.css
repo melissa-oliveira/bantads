@@ -1,0 +1,40 @@
+.card-container {
+  border: 2px solid #FFA500; 
+  border-radius: 15px; 
+  padding: 20px; 
+}
+
+.laranja {
+  background-color: #FFA500; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+.laranja:hover {
+  background-color: #FF8C00; 
+}
+
+.cinza {
+  background-color: #adaca9; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+.cinza:hover {
+  background-color: #736f6b; 
+}
+
+.input-btds{
+  border-color: #dbdbdb;
+}
+
+.input-btds:focus{
+  border-color: #f98316;
+  box-shadow: 0 3px 15px rgba(249, 131, 22, 0.4);
+}
